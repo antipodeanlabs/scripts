@@ -1,6 +1,7 @@
 set -e
 
 sudo bash <<EOF
+apt-get -y upgrade
 apt-get update
 sudo apt-get -y install ntp
 

@@ -1,0 +1,14 @@
+.DS_Store
+*.iml
+.idea
+target
+.classpath
+.project
+.settings
+.properties
+data
+boxout
+packer_cache
+.vagrant
+*.box
+*.log

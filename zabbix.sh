@@ -14,7 +14,7 @@ echo 'deb http://ppa.launchpad.net/tbfr/zabbix/ubuntu precise main' >> /etc/apt/
 echo 'deb-src http://ppa.launchpad.net/tbfr/zabbix/ubuntu precise main' >> /etc/apt/sources.list.d/zabbix.list
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C407E17D5F76A32B
 apt-get update
-apt-get -y install ntp ufw zabbix-server-mysql zabbix-frontend-php zabbix-agent
+apt-get -y install zabbix-server-mysql zabbix-frontend-php zabbix-agent
 
 ufw allow www
 ufw allow 10051

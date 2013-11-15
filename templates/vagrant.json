@@ -1,0 +1,50 @@
+{
+    "builders": [
+        {
+            "name": "vagrant",
+            "type": "virtualbox",
+            "guest_os_type": "Ubuntu_64",
+            "iso_url": "http://releases.ubuntu.com/raring/ubuntu-13.04-server-amd64.iso",
+            "iso_checksum": "7d335ca541fc4945b674459cde7bffb9",
+            "iso_checksum_type": "md5",
+            "ssh_username": "ubuntu",
+            "ssh_password": "ubuntu",
+            "ssh_wait_timeout": "2000s",
+            "disk_size": 10000,
+            "guest_additions_path": "",
+            "shutdown_command": "echo 'shutdown -P now' > shutdown.sh; echo 'ubuntu'|sudo -S sh 'shutdown.sh'",
+            "shutdown_timeout": "5m",
+            "http_directory": "configs/",
+            "http_port_min": 8000,
+            "http_port_max": 9000,
+            "output_directory": "./boxout/",
+            "boot_command": [
+                "<esc><esc><enter><wait>",
+                "/install/vmlinuz noapic ",
+                "preseed/url=https://raw.github.com/antipodeanlabs/scripts/master/preseed.cfg ",
+                "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+                "hostname={{ .Name }} ",
+                "fb=false debconf/frontend=noninteractive ",
+                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+                "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+                "initrd=/install/initrd.gz -- <enter>"
+            ]
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "curl https://raw.github.com/antipodeanlabs/scripts/master/base.sh | bash",
+                "curl https://raw.github.com/antipodeanlabs/scripts/master/ulimits.sh | bash",
+                "curl https://raw.github.com/antipodeanlabs/scripts/master/users.sh | bash",
+                "curl https://raw.github.com/antipodeanlabs/scripts/master/<image_name>/<image_name>.sh | bash",
+                "curl https://raw.github.com/antipodeanlabs/scripts/master/vagrant.sh | bash"]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "vagrant"
+        }
+    ]
+}

@@ -12,3 +12,4 @@ packer_cache
 .vagrant
 *.box
 *.log
+*.template.json

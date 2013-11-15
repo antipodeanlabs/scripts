@@ -1,0 +1,16 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.define :postgresql, :primary => true do |postgresql|
+    postgresql.vm.box = "postgresql"
+    postgresql.vm.box_url = "https://s3.amazonaws.com/antipodeanlabs_public/postgresql.box"
+    postgresql.vm.network :forwarded_port, guest: 5432, host: 5432
+
+    postgresql.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", 2048]
+    end
+  end
+end
+

@@ -33,4 +33,4 @@ sed 's/<image_name>/'$TARGET'/g' templates/vagrant.json > $TEMPLATE
 echo "building vagrant image with template:"
 cat $TEMPLATE
 
-#packer build $TEMPLATE
+packer build $TEMPLATE

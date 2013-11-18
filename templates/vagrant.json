@@ -21,7 +21,7 @@
             "boot_command": [
                 "<esc><esc><enter><wait>",
                 "/install/vmlinuz noapic ",
-                "preseed/url=https://raw.github.com/antipodeanlabs/scripts/master/vagrant/preseed.cfg ",
+                "preseed/url=http://antipodeanlabs.com/vagrant/preseed.cfg ",
                 "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
                 "hostname={{ .Name }} ",
                 "fb=false debconf/frontend=noninteractive ",

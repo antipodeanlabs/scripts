@@ -12,7 +12,7 @@ sudo bash <<EOF
 mv /tmp/pgdg.list /etc/apt/sources.list.d/pgdg.list
 mv /tmp/locale /etc/default/locale
 
-wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+wget -q -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
 apt-get update
 apt-get -y install postgresql-9.3 pgadmin3
 

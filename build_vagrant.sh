@@ -36,7 +36,6 @@ sed 's/<image_name>/'$TARGET'/g' templates/vagrant.json > $TEMPLATE
 sed 's/<image_name>/'$TARGET'/g' templates/vagrant_shell_provisioner.sh > $PROVISIONER
 perl -pi -e s,\<script_name\>,$PROVISIONER,g $TEMPLATE
 
-
 echo "building vagrant image with template:"
 cat $TEMPLATE
 

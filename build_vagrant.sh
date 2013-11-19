@@ -26,10 +26,17 @@ then
     exit 1
 fi
 
-TEMPLATE=.$(date +%s).template.json
+TIMESTAMP=$(date +%s)
+TEMPLATE=.$TIMESTAMP.template.json
+PROVISIONER=.$TIMESTAMP.provisioner.sh
+
 echo "creating template file $TEMPLATE"
 
 sed 's/<image_name>/'$TARGET'/g' templates/vagrant.json > $TEMPLATE
+sed 's/<image_name>/'$TARGET'/g' templates/vagrant_shell_provisioner.sh > $PROVISIONER
+sed -i .bak 's/<script_name>/'$PROVISIONER'/g' $TEMPLATE
+rm $TEMPLATE.bak
+
 echo "building vagrant image with template:"
 cat $TEMPLATE
 

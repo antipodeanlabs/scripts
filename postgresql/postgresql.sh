@@ -14,11 +14,17 @@ mv /tmp/locale /etc/default/locale
 
 wget -q -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
 apt-get update
-apt-get -y install postgresql-9.3 pgadmin3
+apt-get -y install postgresql-9.3 postgresql-contrib-9.3 pgadmin3
 
 ufw allow 5432
 ufw --force enable
 
 service postgresql restart
+
+su postgres -c "
+psql -U postgres -d template1 << EOF1
+CREATE EXTENSION \"uuid-ossp\";
+EOF1
+"
 su postgres -c "psql -c \"ALTER USER postgres PASSWORD 'postgres';\""
 EOF
